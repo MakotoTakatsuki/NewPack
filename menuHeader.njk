@@ -1,0 +1,32 @@
+<header id="menuHeader">
+  <div id="siteName">{{ config.sitename | upper }}</div>
+  <div id="logoBox" class="title">
+    <a href="/index.html">
+      {% block banner %}
+      <img src="/randomBanner.js" id="bannerImage" alt="">
+      {% endblock %}
+    </a>
+  </div>
+  <div id="links" class="title">
+    <span>[</span>
+    <a href="/boards.js" id="linkLogs">Boards</a>
+    <span>/</span>
+    <a href="/globalRules.html" id="linkGlobalRules">Rules</a>
+    <span>/</span>
+    <a href="/privacy.html" id="linkPrivacy">Privacy</a>
+    <span>/</span>
+    <a href="/disclaimer.html" id="linkDisclaimer">Disclaimer</a>
+    <span>/</span>
+    <a href="/info.html" id="linkAbout">Info</a>
+    <span>/</span>
+    <a href="/links.html" id="linkLinks">Links</a>
+    <span>/</span>
+    <a href="/irc.html" id="linkLinks">IRC</a>
+    {% if config.links.status and config.links.status | length > 0 %}
+    <span>/</span>
+    <a target="_blank" href="{{ (config.links.status | first).url }}" class="linkFollow">Follow</a>
+    {% endif %}
+    <a href="http://gitgud.io/LynxChan/LynxChan" id="linkEngine"></a>
+    <span>]</span>
+  </div>
+</header>

@@ -1,0 +1,24 @@
+{% extends "base.njk" %}
+
+{% block extraHead %}
+<title>IRC</title>
+{% endblock %}
+
+{% block content %}
+{% include 'content/menuHeader.njk' %}
+{% if config.contact and config.contact.irc %}
+{% set irc = config.contact.irc %}
+<div id="subpageWrapper">
+  <h2>IRC Channel{% if irc.channels | length > 1 %}s{% endif %}</h2>
+  <div>
+    <p>The official {{ config.sitename }} channel{% if irc.channels | length > 1 %}s are{% else %} is{% endif %} on <a target="_blank" href="{{ irc.network.website }}">{{ irc.network.name }}</a>:</p>
+    <ul>
+      {% for channel in irc.channels %}
+      <li>{{ channel.title }}: <a target="_blank" href="{{ irc.network.connectionUrl }}/{{ channel.name }}">{{ irc.network.displayName }} {{ channel.name }}</a>{% if irc.network.webchatUrl %} (<a target="_blank" href="{{ irc.network.webchatUrl | replace('$board', channel.name) }}">webchat</a>){% endif %}</li>
+      {% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
